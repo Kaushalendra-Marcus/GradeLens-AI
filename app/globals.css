@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-app: #F4F4F5;
+  --bg-surface: #FFFFFF;
+  --text-primary: #18181B;
+  --text-secondary: #71717A;
+  --brand-dark: #1A1A1A;
+  --accent-orange: #F1633B;
+  --accent-orange-tint: #FDE6DA;
+  --success: #16A34A;
+  --success-bg: #DCFCE7;
+  --warning: #D97706;
+  --warning-bg: #FEF3C7;
+  --danger: #DC2626;
+  --danger-bg: #FEE2E2;
+  --border-neutral: #E4E4E7;
+  --gold-ring: #EAB308;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E4E4E7 transparent;
+}
