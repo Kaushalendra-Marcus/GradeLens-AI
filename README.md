@@ -1,0 +1,1 @@
+An AI-powered assessment intelligence platform that extracts questions and handwritten answers, maps them accurately, and highlights the exact answer regions across pages.
