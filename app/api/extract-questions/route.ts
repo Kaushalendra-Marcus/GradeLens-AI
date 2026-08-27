@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { ExtractQuestionsRequestSchema } from "@/lib/schemas";
 import { extractQuestions } from "@/lib/extraction/questionExtraction";
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
   try {

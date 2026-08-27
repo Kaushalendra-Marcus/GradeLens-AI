@@ -24,9 +24,20 @@ export async function callWithRateLimit<T>(
     try {
       return await fn();
     } catch (err: any) {
-      if (err?.status === 429 && attempt < maxRetries) {
-        const retryAfter = Number(err?.headers?.["retry-after"] ?? 2 ** attempt);
-        await sleep(retryAfter * 1000);
+      const isRateLimit =
+        err?.status === 429 ||
+        err?.status === 413 ||
+        err?.error?.code === "rate_limit_exceeded" ||
+        (typeof err?.message === "string" && err.message.includes("rate_limit_exceeded")) ||
+        (typeof err?.message === "string" && err.message.includes("Request too large"));
+      if (isRateLimit && attempt < maxRetries) {
+        const raw = err?.headers?.["retry-after"] ?? err?.headers?.["Retry-After"];
+        const retryAfter = raw != null ? Number(raw) : 2 ** attempt;
+        // Groq returns 60-62s for TPM reset; cap wait to avoid huge stalls but respect it
+        const waitMs = (isNaN(retryAfter) ? 2 ** attempt : retryAfter) * 1000;
+        await sleep(waitMs);
+        // reset interval timer so next attempt doesn't add extra MIN_INTERVAL wait
+        lastCallAt = Date.now();
         continue;
       }
       throw err;

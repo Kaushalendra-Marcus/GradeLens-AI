@@ -3,7 +3,7 @@ import { ExtractAnswersRequestSchema } from "@/lib/schemas";
 import { extractAnswers } from "@/lib/extraction/answerExtraction";
 import { normalizeLabel } from "@/lib/mapping/normalize";
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
   try {

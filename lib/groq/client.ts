@@ -30,7 +30,10 @@ export async function groqChatCompletion(params: {
         { role: "user", content: params.userContent as any },
       ],
       max_tokens: params.maxTokens ?? 4096,
-    })
+      // qwen3.6 supports thinking mode; non-thinking is more reliable for JSON
+      // @ts-ignore - groq-sdk types lag behind API
+      reasoning_effort: "none",
+    } as any)
   );
   const content = completion.choices[0]?.message?.content ?? "";
   return content;

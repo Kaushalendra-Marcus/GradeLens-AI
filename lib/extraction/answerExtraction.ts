@@ -36,7 +36,7 @@ function safeParse(content: string): RawAnswerBlock[] {
 }
 
 export async function extractAnswers(pages: PageInput[]): Promise<RawAnswerBlock[]> {
-  const batches = chunk(pages, 2);
+  const batches = chunk(pages, 1);
   const all: RawAnswerBlock[] = [];
 
   for (const batch of batches) {

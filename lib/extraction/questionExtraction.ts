@@ -38,7 +38,7 @@ function safeParseQuestions(content: string, fallbackPage: number): RawQuestion[
 }
 
 export async function extractQuestions(pages: PageInput[]): Promise<RawQuestion[]> {
-  const batches = chunk(pages, 2);
+  const batches = chunk(pages, 1);
   const all: RawQuestion[] = [];
 
   for (const batch of batches) {
