@@ -19,9 +19,7 @@ export async function groqChatCompletion(params: {
   maxTokens?: number;
 }): Promise<string> {
   const groq = getGroq();
-  const model = params.model ?? "qwen/qwen3-32b";
-  // Note: spec says qwen/qwen3.6-27b but actual Groq model id is qwen/qwen3-32b
-  // Fallback to mapped id if env specifies.
+  const model = params.model ?? "qwen/qwen3.6-27b";
   const completion = await callWithRateLimit(() =>
     groq.chat.completions.create({
       model,
@@ -39,5 +37,5 @@ export async function groqChatCompletion(params: {
 }
 
 export function configuredModel(): string {
-  return process.env.GROQ_MODEL ?? "qwen/qwen3-32b";
+  return process.env.GROQ_MODEL ?? "qwen/qwen3.6-27b";
 }

@@ -8,13 +8,13 @@ Core flow: **Upload (question paper + answer sheet) → Question Extraction (OCR
 
 - **Client-side PDF rasterization** (`pdfjs-dist` → `<canvas>` → JPEG data URLs) — server never touches raw PDFs, avoiding serverless rasterization fragility.
 - **Stateless API routes** (`/api/extract-questions`, `/api/extract-answers`, `/api/map`, `/api/grade`) — pure functions, images/JSON in, structured JSON out, no DB/session.
-- **Groq vision** (`qwen/qwen3-32b`, spec original `qwen/qwen3.6-27b`) batched at **2 images/request** to stay under 8K TPM (each image = 2048 tokens), serialized through a 2100 ms rate-limiter with 429 backoff.
+- **Groq vision** (`qwen/qwen3.6-27b`) batched at **2 images/request** to stay under 8K TPM (each image = 2048 tokens), serialized through a 2100 ms rate-limiter with 429 backoff.
 - **Deterministic mapping** layers exact normalized-key match → Levenshtein/confusable fuzzy (≤1) → text-only LLM escalation → unmatched bucket. Multi-page answers grouped in page order.
 - **In-memory Zustand store** holds single `AssessmentResult` for the whole review session; highlight overlay uses normalized 0–1 boxes as CSS percentages (zoom-independent).
 
 ## AI Model / API Used
 
-- **Groq API**, model **`qwen/qwen3-32b`** (spec equivalent `qwen/qwen3.6-27b`) for all vision calls (question + handwriting extraction), plus small text-only calls for ambiguous mapping and grading. `temperature: 0`, `response_format: { type: "json_object" }`, free-tier limits: 30 RPM / 1,000 RPD / 8,000 TPM / 200,000 TPD, 5 images/request (batched at 2).
+- **Groq API**, model **`qwen/qwen3.6-27b`** for all vision calls (question + handwriting extraction), plus small text-only calls for ambiguous mapping and grading. `temperature: 0`, `response_format: { type: "json_object" }`, free-tier limits: 30 RPM / 1,000 RPD / 8,000 TPM / 200,000 TPD, 5 images/request (batched at 2).
 
 ## Setup / Run
 
@@ -26,7 +26,7 @@ npm install
 cp .env.local.example .env.local
 # edit .env.local and set:
 # GROQ_API_KEY=your_groq_key_here
-# (optional) GROQ_MODEL=qwen/qwen3-32b
+# (optional) GROQ_MODEL=qwen/qwen3.6-27b
 
 # 3. Dev
 npm run dev        # http://localhost:3000 → redirects to /exam

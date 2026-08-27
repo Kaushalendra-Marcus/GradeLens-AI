@@ -1,5 +1,12 @@
-const MIN_INTERVAL_MS = 2100;
+export const MIN_INTERVAL_MS = 2100;
 let lastCallAt = 0;
+
+export function _resetRateLimiter() {
+  lastCallAt = 0;
+}
+export function _setLastCallAt(v: number) {
+  lastCallAt = v;
+}
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

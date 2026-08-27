@@ -1,5 +1,6 @@
 export function normalizeLabel(raw: string): string {
   return raw
+    .trim()
     .toLowerCase()
     .replace(/^q\.?\s*/i, "")
     .replace(/[().]/g, "")
