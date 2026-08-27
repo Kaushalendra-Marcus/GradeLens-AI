@@ -43,7 +43,7 @@ export function getClosestCandidates(
   limit = MAX_CANDIDATES
 ): CandidateWithDist[] {
   if (!normalizedKey) {
-    // No label — can't rank by label distance; return first N questions as candidates
+    // No label - can't rank by label distance; return first N questions as candidates
     // Caller should use shouldEscalate to decide if content is non-trivial
     return questions.slice(0, limit).map((q) => ({
       question: q,

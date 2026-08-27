@@ -64,7 +64,7 @@ export function UploadDropzone({
         </div>
         <div>
           <div className="text-sm font-medium">{label}</div>
-          <div className="text-xs text-zinc-500 mt-1">PDF, JPG, PNG — Max 10MB</div>
+          <div className="text-xs text-zinc-500 mt-1">PDF, JPG, PNG - Max 10MB</div>
         </div>
         <label className="text-xs font-medium text-[#F1633B] cursor-pointer hover:underline">
           Browse file

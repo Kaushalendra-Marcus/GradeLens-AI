@@ -16,7 +16,7 @@ export function UnmatchedAnswersPanel({ result }: { result: AssessmentResult }) 
       </button>
       {open && (
         <div className="px-3 pb-3 flex flex-col gap-2">
-          <div className="text-xs text-amber-700">These handwriting blocks could not be confidently tied to a question — not dropped, shown here for review.</div>
+          <div className="text-xs text-amber-700">These handwriting blocks could not be confidently tied to a question - not dropped, shown here for review.</div>
           {result.unmatched.map((u) => {
             const b = blockById.get(u.answerBlockId);
             if (!b) return null;

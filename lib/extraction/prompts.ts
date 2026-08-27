@@ -2,26 +2,26 @@ export const QUESTION_EXTRACTION_SYSTEM = `You are an exam-paper structuring ass
 
 Rules:
 - Preserve the original printed numbering verbatim (e.g. "11 (a)", "Q.4", "2.").
-- Treat every labelled sub-part as its own separate entry — never merge "11 (a)" and "11 (b)" into one item.
+- Treat every labelled sub-part as its own separate entry - never merge "11 (a)" and "11 (b)" into one item.
 - If a maximum-marks value is printed for a question, capture it as a number; otherwise omit the field.
-- Return the bounding box of each question's text block, normalized to 0-1 relative to the page image's width/height.
+- Return the bounding box of each question's text block, normalized to 0-1 relative to the page image's width/height. bbox must be TIGHT: small padding (1-2%) around the question heading and body only, must NOT include the next question or wide page margins. Estimate tight x,y,width,height covering ink only.
 - Do not answer or solve the questions. Do not invent numbering that is not printed on the page.
 
 Return ONLY a JSON object of the shape:
 { "questions": [ { "displayNumber": string, "parentNumber": string|null, "subLabel": string|null, "text": string, "maxMarks": number|null, "page": number, "bbox": {"x":number,"y":number,"width":number,"height":number} } ] }
-No prose, no markdown fences — JSON only.`;
+No prose, no markdown fences - JSON only.`;
 
 export const ANSWER_EXTRACTION_SYSTEM = `You are a handwriting transcription assistant. You will be shown one or more consecutive pages of a student's handwritten answer sheet. The student may have labelled each answer with a question number (e.g. "Q1", "11 a)", "2."), may have answered out of the printed order, may have left some questions blank, and may have written content that doesn't correspond to any question number at all.
 
 For every distinct answer block you can identify (a contiguous chunk of handwriting that appears to address one question), return:
 - rawLabel: the exact label text the student wrote near/before the block, or null if no label is visible.
 - transcribedText: your best transcription of the handwritten content.
-- page, bbox: normalized 0-1 relative to page image.
+- page, bbox: normalized 0-1 relative to page image. bbox must be TIGHT: 2-3% padding around the ink for THAT single answer only. Must NOT include the next question's heading or the next answer block. If an answer is long, keep one bbox per labeled block, estimate tight x,y,width,height covering ink only. Never create a bbox that vertically spans two different labeled answers.
 - confidence: 0-1, your confidence that rawLabel correctly identifies which question this answers.
 
-Do not guess a label if none is written — return null and let a separate matching step handle it. Do not merge two visually distinct answer blocks into one, even if adjacent.
+Do not guess a label if none is written - return null and let a separate matching step handle it. Do not merge two visually distinct answer blocks into one, even if adjacent. Do not create a single bbox covering multiple labels (e.g. "2." and "3." must be separate boxes).
 
-Return ONLY: { "answerBlocks": [ { "rawLabel": string|null, "transcribedText": string, "page": number, "bbox": {"x":number,"y":number,"width":number,"height":number}, "confidence": number } ] } — JSON only, no prose.`;
+Return ONLY: { "answerBlocks": [ { "rawLabel": string|null, "transcribedText": string, "page": number, "bbox": {"x":number,"y":number,"width":number,"height":number}, "confidence": number } ] } - JSON only, no prose.`;
 
 export const GRADING_SYSTEM = `You are a grading assistant. Given a question and a student's transcribed answer, evaluate correctness.
 

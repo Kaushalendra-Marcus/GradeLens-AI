@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GradeLens AI — Assessment Extraction & Mapping",
+  title: "GradeLens AI - Assessment Extraction & Mapping",
   description: "Upload question paper & answer sheets, extract, map, and highlight answers.",
 };
 

@@ -10,6 +10,7 @@ export function QuestionRow({
   selected,
   expanded,
   onSelect,
+  onToggle,
 }: {
   question: Question;
   mapping?: Mapping;
@@ -17,6 +18,7 @@ export function QuestionRow({
   selected: boolean;
   expanded: boolean;
   onSelect: () => void;
+  onToggle?: () => void;
 }) {
   const isAnswered = mapping?.status === "answered";
   let pillLabel = "Not Answered";
@@ -58,7 +60,17 @@ export function QuestionRow({
           <div className="text-sm font-medium truncate">{question.text.slice(0, 120)}</div>
         </div>
         <div className={cn("text-xs font-medium px-2.5 py-1 rounded-full border shrink-0", pillClass)}>{pillLabel}</div>
-        <div className="shrink-0 text-zinc-400">{expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}</div>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            (onToggle ?? onSelect)();
+          }}
+          aria-label={expanded ? "Collapse" : "Expand"}
+          className="shrink-0 text-zinc-400 hover:text-zinc-600 p-1 -m-1"
+        >
+          {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+        </button>
       </div>
       {expanded && (
         <div className="px-4 pb-3 pt-0">

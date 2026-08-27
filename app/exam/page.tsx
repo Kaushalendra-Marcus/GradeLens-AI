@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { TeacherAvatarBadge } from "@/components/upload/TeacherAvatarBadge";
-import { UploadDropzone } from "@/components/upload/UploadDropzone";
+import { DoodleUpload } from "@/components/upload/DoodleUpload";
 import { ProcessingView } from "@/components/processing/ProcessingView";
 import { QuestionListPanel } from "@/components/review/QuestionListPanel";
 import { AnswerSheetPanel } from "@/components/review/AnswerSheetPanel";
@@ -13,6 +13,7 @@ import { useAssessmentStore } from "@/store/useAssessmentStore";
 import { fileToPageImages } from "@/lib/pdf/rasterize";
 import type { Question, AnswerBlock } from "@/types/domain";
 import { normalizeLabel } from "@/lib/mapping/normalize";
+import { FileText, ShieldCheck, Zap } from "lucide-react";
 
 const MAX_SIZE = 10 * 1024 * 1024;
 
@@ -226,9 +227,9 @@ export default function ExamPage() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className={`flex ${stage === "review" ? "h-screen overflow-hidden" : "min-h-screen"}`}>
       <AppSidebar collapsed={stage !== "upload"} />
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 min-h-0">
         <AppHeader onBack={stage === "review" ? handleReset : undefined} />
 
         {stage === "upload" && (
@@ -241,9 +242,9 @@ export default function ExamPage() {
 
               <TeacherAvatarBadge ready={bothReady} />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                <UploadDropzone label="Upload Question Paper" file={questionFile} pages={questionPagesCount} onFile={handleQFile} onRemove={() => setFiles(null, answerFile)} error={qError} />
-                <UploadDropzone label="Upload Answer Sheet" file={answerFile} pages={answerPagesCount} onFile={handleAFile} onRemove={() => setFiles(questionFile, null)} error={aError} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
+                <DoodleUpload label="Question Paper" file={questionFile} pages={questionPagesCount} onFile={handleQFile} onRemove={() => setFiles(null, answerFile)} error={qError} />
+                <DoodleUpload label="Answer Sheet" file={answerFile} pages={answerPagesCount} onFile={handleAFile} onRemove={() => setFiles(questionFile, null)} error={aError} />
               </div>
 
               <div className="flex items-center justify-center gap-2 mt-6">
@@ -266,13 +267,13 @@ export default function ExamPage() {
         {stage === "processing" && <ProcessingView step={processingStep} progress={progress} error={error} errorStage={errorStage} onRetry={handleRetry} />}
 
         {stage === "review" && result && (
-          <main className="flex-1 p-3 lg:p-4 bg-[#F4F4F5] overflow-auto">
+          <main className="flex-1 p-3 lg:p-4 bg-[#F4F4F5] overflow-hidden flex flex-col min-h-0">
             {/* Desktop split */}
-            <div className="hidden lg:grid grid-cols-[420px_1fr] gap-4 h-[calc(100vh-56px-16px)]">
-              <div className="min-h-0">
+            <div className="hidden lg:grid grid-cols-[420px_1fr] gap-4 flex-1 min-h-0 overflow-hidden">
+              <div className="min-h-0 overflow-hidden">
                 <QuestionListPanel result={result} selectedId={selectedQuestionId} onSelect={setSelected} />
               </div>
-              <div className="min-h-0">
+              <div className="min-h-0 overflow-hidden">
                 <AnswerSheetPanel
                   pages={result.answerSheetPages}
                   blocks={result.answerBlocks}
@@ -284,16 +285,16 @@ export default function ExamPage() {
               </div>
             </div>
             {/* Mobile tabs */}
-            <div className="lg:hidden h-[calc(100vh-56px-24px)]">
+            <div className="lg:hidden flex-1 min-h-0 overflow-hidden">
               <MobileTabs result={result} selectedId={selectedQuestionId} onSelect={setSelected} />
             </div>
 
-            <div className="hidden lg:flex justify-center mt-3">
+            <div className="hidden lg:flex justify-center mt-3 shrink-0">
               <Button variant="outline" onClick={handleReset} className="rounded-full">
                 Start new mapping
               </Button>
             </div>
-            <div className="lg:hidden flex justify-center mt-3">
+            <div className="lg:hidden flex justify-center mt-3 shrink-0">
               <Button variant="outline" onClick={handleReset} className="rounded-full" size="sm">
                 New mapping
               </Button>

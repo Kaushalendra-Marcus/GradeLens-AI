@@ -15,7 +15,6 @@ export function QuestionListPanel({
   onSelect: (id: string) => void;
 }) {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
-  const [expandAll, setExpandAll] = useState(false);
 
   const toggleExpand = (id: string) => {
     setExpandedIds((prev) => {
@@ -26,19 +25,15 @@ export function QuestionListPanel({
     });
   };
 
-  const handleSelect = (id: string) => {
+  const handleRowClick = (id: string) => {
     onSelect(id);
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      return next;
-    });
+    toggleExpand(id);
   };
 
+  const allExpanded = result.questions.length > 0 && expandedIds.size === result.questions.length;
   const handleExpandAll = () => {
-    if (expandAll) setExpandedIds(new Set());
+    if (allExpanded) setExpandedIds(new Set());
     else setExpandedIds(new Set(result.questions.map((q) => q.id)));
-    setExpandAll(!expandAll);
   };
 
   return (
@@ -46,7 +41,7 @@ export function QuestionListPanel({
       <div className="px-4 py-3 border-b border-zinc-200 flex items-center justify-between shrink-0">
         <div className="text-sm font-semibold">Extracted Questions (from question paper)</div>
         <button onClick={handleExpandAll} className="text-xs text-[#F1633B] font-medium hover:underline">
-          {expandAll ? "Collapse All" : "Expand All"}
+          {allExpanded ? "Collapse All" : "Expand All"}
         </button>
       </div>
 
@@ -65,10 +60,8 @@ export function QuestionListPanel({
               grade={grade}
               selected={selectedId === q.id}
               expanded={expanded}
-              onSelect={() => {
-                handleSelect(q.id);
-                if (!expanded) toggleExpand(q.id);
-              }}
+              onSelect={() => handleRowClick(q.id)}
+              onToggle={() => toggleExpand(q.id)}
             />
           );
         })}

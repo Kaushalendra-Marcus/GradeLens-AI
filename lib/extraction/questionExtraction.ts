@@ -57,14 +57,28 @@ export async function extractQuestions(pages: PageInput[]): Promise<RawQuestion[
     });
 
     const parsed = safeParseQuestions(content, batch[0].page);
-    // Validate / clamp bbox
+    // Validate / clamp bbox with tight limits
     for (const q of parsed) {
       if (!q.bbox) q.bbox = { x: 0.05, y: 0.05, width: 0.9, height: 0.08 };
       q.bbox.x = Math.max(0, Math.min(1, q.bbox.x));
       q.bbox.y = Math.max(0, Math.min(1, q.bbox.y));
       q.bbox.width = Math.max(0, Math.min(1 - q.bbox.x, q.bbox.width));
       q.bbox.height = Math.max(0, Math.min(1 - q.bbox.y, q.bbox.height));
+      // tighten: prevent single question bbox spanning multiple questions
+      q.bbox.width = Math.min(q.bbox.width, 0.92);
+      q.bbox.height = Math.min(Math.max(q.bbox.height, 0.04), 0.18);
       if (!q.page || typeof q.page !== "number") q.page = batch[0].page;
+    }
+    // de-overlap on same page: shrink overlapping heights
+    parsed.sort((a, b) => a.bbox.y - b.bbox.y);
+    for (let i = 0; i < parsed.length - 1; i++) {
+      const cur = parsed[i];
+      const nxt = parsed[i + 1];
+      if (cur.page !== nxt.page) continue;
+      const curBottom = cur.bbox.y + cur.bbox.height;
+      if (curBottom > nxt.bbox.y - 0.015) {
+        cur.bbox.height = Math.max(0.04, nxt.bbox.y - cur.bbox.y - 0.015);
+      }
     }
     all.push(...parsed);
   }
