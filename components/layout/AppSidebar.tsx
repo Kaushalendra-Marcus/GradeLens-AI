@@ -28,19 +28,19 @@ export function AppSidebar({ collapsed }: { collapsed?: boolean }) {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
-                  active ? "bg-zinc-900 text-white" : "text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700"
+                  "group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 ease-out hover:scale-105 active:scale-90",
+                  active ? "bg-zinc-900 text-white shadow-md scale-[1.02]" : "text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 hover:translate-y-[-1px]"
                 )}
                 title={item.label}
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="w-5 h-5 transition-transform duration-200 group-hover:rotate-3 group-active:scale-90" />
               </Link>
             );
           })}
         </nav>
         <div className="mt-auto flex flex-col items-center gap-3">
-          <Link href="/settings" className={cn("w-10 h-10 rounded-lg flex items-center justify-center", isActive("/settings") ? "bg-zinc-900 text-white" : "bg-zinc-900 text-white/80 hover:bg-zinc-800")}>
-            <Settings className="w-5 h-5" />
+          <Link href="/settings" className={cn("w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-90", isActive("/settings") ? "bg-zinc-900 text-white shadow-md" : "bg-zinc-900 text-white/80 hover:bg-zinc-800 hover:rotate-3")}>
+            <Settings className="w-5 h-5 transition-transform duration-200" />
           </Link>
           <div className="w-8 h-8 rounded-full bg-amber-300 flex items-center justify-center text-xs font-bold">DT</div>
         </div>
@@ -74,11 +74,11 @@ export function AppSidebar({ collapsed }: { collapsed?: boolean }) {
               key={item.label}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors",
-                active ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-50"
+                "group flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ease-out hover:translate-x-1 active:scale-[0.98]",
+                active ? "bg-zinc-900 text-white shadow-md translate-x-0.5" : "text-zinc-600 hover:bg-zinc-50 hover:shadow-sm"
               )}
             >
-              <item.icon className="w-5 h-5" />
+              <item.icon className="w-5 h-5 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-3 group-active:scale-90" />
               {item.label}
             </Link>
           );
@@ -86,15 +86,15 @@ export function AppSidebar({ collapsed }: { collapsed?: boolean }) {
       </nav>
 
       <div className="mt-auto p-4 border-t border-zinc-100 flex flex-col gap-3">
-        <Link href="/settings" className={cn("flex items-center gap-3 px-3 py-2 rounded-lg text-sm", isActive("/settings") ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-50")}>
-          <Settings className="w-5 h-5" />
+        <Link href="/settings" className={cn("group flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:translate-x-1 active:scale-[0.98]", isActive("/settings") ? "bg-zinc-900 text-white shadow-md" : "text-zinc-600 hover:bg-zinc-50")}>
+          <Settings className="w-5 h-5 transition-transform duration-200 group-hover:rotate-12 group-active:scale-90" />
           Settings
         </Link>
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center text-xs font-bold">DT</div>
           <div>
-            <div className="text-sm font-medium">Demo Teacher</div>
-            <div className="text-xs text-zinc-500">Greenwood High</div>
+            <div className="text-sm font-medium">Sanjay Sir</div>
+            <div className="text-xs text-zinc-500">Greenwood High School</div>
           </div>
         </div>
       </div>
