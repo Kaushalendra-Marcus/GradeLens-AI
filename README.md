@@ -52,14 +52,31 @@ Images are stored in `public/screenshots/` and are served as static assets. GitH
 
 ## Demo Videos
 
-Videos are in `public/` so they are accessible directly. Add your files to `public/videos/` or keep them in `docs/videos/` and link correctly.
+### YouTube
 
-- **Full walkthrough (2 min):** `public/videos/gradelens-demo.mp4` - Upload to review to grading.
+[![Watch on YouTube](https://img.youtube.com/vi/TCBrZ1d_FDQ/maxresdefault.jpg)](https://youtu.be/TCBrZ1d_FDQ)
 
-Example embed:
+**Link:** https://youtu.be/TCBrZ1d_FDQ
+
+Click the thumbnail to watch the full walkthrough on YouTube.
+
+### Local demo file
+
+Video stored at `public/videos/gradelens-demo.mp4` and is also deployed with the site.
+
+- **Direct link (GitHub):** [public/videos/gradelens-demo.mp4](public/videos/gradelens-demo.mp4)
+- **Direct link (Vercel):** [https://gradelens-ai.vercel.app/videos/gradelens-demo.mp4](https://gradelens-ai.vercel.app/videos/gradelens-demo.mp4)
+
+To play locally after cloning:
+
+```bash
+open public/videos/gradelens-demo.mp4
+```
+
+Or embed in markdown:
 
 ```md
-[![Demo Video](public/screenshots/video-thumb.png)](https://your-loom-link)
+[Download demo video](public/videos/gradelens-demo.mp4)
 ```
 
 ---
