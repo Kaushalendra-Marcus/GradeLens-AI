@@ -73,11 +73,6 @@ To play locally after cloning:
 open public/videos/gradelens-demo.mp4
 ```
 
-Or embed in markdown:
-
-```md
-[Download demo video](public/videos/gradelens-demo.mp4)
-```
 
 ---
 
