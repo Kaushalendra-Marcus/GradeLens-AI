@@ -41,25 +41,27 @@ GradeLens AI automates the tedious flipping between a printed question paper and
 
 ## Screenshots
 
+Images are stored in `public/screenshots/` and are served as static assets. GitHub renders them via the repo relative path.
 
 | Upload | Processing | Review |
 |---|---|---|
-| ![Upload](/screenshots/upload.png) | ![Processing](/screenshots/processing.png) | ![Review](/screenshots/review.png) |
+| ![Upload](public/screenshots/upload.png) | ![Processing](public/screenshots/processing.png) | ![Review](public/screenshots/review.png) |
 | Upload question paper and answer sheet. Drag and drop or choose file. Max 10MB per file. | Staged progress with per page messages, spinners and throughput aware waiting. | Extracted questions on left, answer sheet on right. Click to highlight, zoom, paginate, see AI feedback. |
 
 ---
 
 ## Demo Videos
 
+Videos are in `public/` so they are accessible directly. Add your files to `public/videos/` or keep them in `docs/videos/` and link correctly.
 
-- **Full walkthrough (2 min):** `docs/videos/gradelens-demo.mp4` - Upload to review to grading.
-- **Handwriting mapping:** `docs/videos/handwriting.mp4` - Out of order, multi page and unlabeled cases.
+- **Full walkthrough (2 min):** `public/videos/gradelens-demo.mp4` - Upload to review to grading.
+- **Handwriting mapping:** `public/videos/handwriting.mp4` - Out of order, multi page and unlabeled cases.
 - **Loom link:** Add your Loom URL here after recording.
 
 Example embed:
 
 ```md
-[![Demo Video](docs/screenshots/video-thumb.png)](https://your-loom-link)
+[![Demo Video](public/screenshots/video-thumb.png)](https://your-loom-link)
 ```
 
 ---
