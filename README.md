@@ -48,17 +48,10 @@ GradeLens AI automates the tedious flipping between a printed question paper and
 | ![Upload](docs/screenshots/upload.png) | ![Processing](docs/screenshots/processing.png) | ![Review](docs/screenshots/review.png) |
 | Upload question paper and answer sheet. Drag and drop or choose file. Max 10MB per file. | Staged progress with per page messages, spinners and throughput aware waiting. | Extracted questions on left, answer sheet on right. Click to highlight, zoom, paginate, see AI feedback. |
 
-**Additional views:**
-
-- Mobile upload and review tabs - `docs/screenshots/mobile.png`
-- Expanded question with AI feedback - `docs/screenshots/feedback.png`
-- Multi page highlight continuation - `docs/screenshots/multipage.png`
-
 ---
 
 ## Demo Videos
 
-> Add videos to `docs/videos/` or link to Loom or YouTube and replace placeholders.
 
 - **Full walkthrough (2 min):** `docs/videos/gradelens-demo.mp4` - Upload to review to grading.
 - **Handwriting mapping:** `docs/videos/handwriting.mp4` - Out of order, multi page and unlabeled cases.
@@ -99,8 +92,8 @@ Example embed:
 
 ```bash
 # 1. Clone and install
-git clone <your-repo>
-cd "GradeLens AI"
+git clone https://github.com/Kaushalendra-Marcus/GradeLens-AI
+cd "GradeLens-AI"
 npm install
 
 # 2. Configure env (required for real AI, without it app runs in mock demo mode)
@@ -165,13 +158,6 @@ See `docs/SPEC.md` for product spec and `docs/IMPLEMENTATION.md` for stack, prom
 
 ---
 
-## Design Notes
-
-- Sidebar, header, upload dropzones and review split match the Figma frames. Upload uses the peach highlight and dashed border from Figma. Review uses orange left border for selected question and colored score pills and highlight boxes that follow grading verdict.
-- Upload shows real file cards inside the dashed boxes after selection, as in Figma. Teacher avatar uses the provided illustration at `public/teacher-avatar.png`.
-- No persistence by design. Refreshing clears the session. Assignment items other than the active Exams flow are inert until you navigate via the sidebar.
-
----
 
 ## Known Limitations
 
@@ -181,7 +167,3 @@ See `docs/SPEC.md` for product spec and `docs/IMPLEMENTATION.md` for stack, prom
 - Mock mode when `GROQ_API_KEY` is unset returns synthetic demo data.
 
 ---
-
-## License
-
-Assignment submission. Not licensed for reuse.

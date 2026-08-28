@@ -35,3 +35,4 @@ next-env.d.ts
 
 # pdf worker
 /public/pdf.worker.min.mjs
+PROJECT_DEEP_DIVE.md
