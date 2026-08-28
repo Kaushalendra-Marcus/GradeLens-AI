@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
-import { LayoutDashboard, FileText, BookOpen, GraduationCap, Sparkles, ArrowRight, Clock, ShieldCheck, Zap, Users } from "lucide-react";
+import { LayoutDashboard, FileText, BookOpen, Sparkles, ArrowRight, Clock, ShieldCheck, Zap, Users } from "lucide-react";
 
 export default function HomePage() {
   return (
