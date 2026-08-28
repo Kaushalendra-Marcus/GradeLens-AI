@@ -41,11 +41,10 @@ GradeLens AI automates the tedious flipping between a printed question paper and
 
 ## Screenshots
 
-> Add real screenshots to `docs/screenshots/` and replace the placeholders below.
 
 | Upload | Processing | Review |
 |---|---|---|
-| ![Upload](docs/screenshots/upload.png) | ![Processing](docs/screenshots/processing.png) | ![Review](docs/screenshots/review.png) |
+| ![Upload](screenshots/upload.png) | ![Processing](screenshots/processing.png) | ![Review](screenshots/review.png) |
 | Upload question paper and answer sheet. Drag and drop or choose file. Max 10MB per file. | Staged progress with per page messages, spinners and throughput aware waiting. | Extracted questions on left, answer sheet on right. Click to highlight, zoom, paginate, see AI feedback. |
 
 ---
