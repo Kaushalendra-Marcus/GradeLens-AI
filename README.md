@@ -55,8 +55,6 @@ Images are stored in `public/screenshots/` and are served as static assets. GitH
 Videos are in `public/` so they are accessible directly. Add your files to `public/videos/` or keep them in `docs/videos/` and link correctly.
 
 - **Full walkthrough (2 min):** `public/videos/gradelens-demo.mp4` - Upload to review to grading.
-- **Handwriting mapping:** `public/videos/handwriting.mp4` - Out of order, multi page and unlabeled cases.
-- **Loom link:** Add your Loom URL here after recording.
 
 Example embed:
 
