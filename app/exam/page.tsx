@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { TeacherAvatarBadge } from "@/components/upload/TeacherAvatarBadge";
-import { DoodleUpload } from "@/components/upload/DoodleUpload";
+import { UploadDropzone } from "@/components/upload/UploadDropzone";
 import { ProcessingView } from "@/components/processing/ProcessingView";
 import { QuestionListPanel } from "@/components/review/QuestionListPanel";
 import { AnswerSheetPanel } from "@/components/review/AnswerSheetPanel";
@@ -13,7 +13,6 @@ import { useAssessmentStore } from "@/store/useAssessmentStore";
 import { fileToPageImages } from "@/lib/pdf/rasterize";
 import type { Question, AnswerBlock } from "@/types/domain";
 import { normalizeLabel } from "@/lib/mapping/normalize";
-import { FileText, ShieldCheck, Zap } from "lucide-react";
 
 const MAX_SIZE = 10 * 1024 * 1024;
 
@@ -242,9 +241,9 @@ export default function ExamPage() {
 
               <TeacherAvatarBadge ready={bothReady} />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-2">
-                <DoodleUpload label="Question Paper" file={questionFile} pages={questionPagesCount} onFile={handleQFile} onRemove={() => setFiles(null, answerFile)} error={qError} />
-                <DoodleUpload label="Answer Sheet" file={answerFile} pages={answerPagesCount} onFile={handleAFile} onRemove={() => setFiles(questionFile, null)} error={aError} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                <UploadDropzone label="Upload Question Paper" file={questionFile} pages={questionPagesCount} onFile={handleQFile} onRemove={() => setFiles(null, answerFile)} error={qError} />
+                <UploadDropzone label="Upload Answer Sheet" file={answerFile} pages={answerPagesCount} onFile={handleAFile} onRemove={() => setFiles(questionFile, null)} error={aError} />
               </div>
 
               <div className="flex items-center justify-center gap-2 mt-6">
