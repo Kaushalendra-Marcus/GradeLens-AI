@@ -44,7 +44,7 @@ GradeLens AI automates the tedious flipping between a printed question paper and
 
 | Upload | Processing | Review |
 |---|---|---|
-| ![Upload](screenshots/upload.png) | ![Processing](screenshots/processing.png) | ![Review](screenshots/review.png) |
+| ![Upload](/screenshots/upload.png) | ![Processing](/screenshots/processing.png) | ![Review](/screenshots/review.png) |
 | Upload question paper and answer sheet. Drag and drop or choose file. Max 10MB per file. | Staged progress with per page messages, spinners and throughput aware waiting. | Extracted questions on left, answer sheet on right. Click to highlight, zoom, paginate, see AI feedback. |
 
 ---
