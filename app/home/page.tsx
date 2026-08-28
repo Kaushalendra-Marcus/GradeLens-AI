@@ -5,13 +5,13 @@ import { LayoutDashboard, FileText, BookOpen, GraduationCap, Sparkles, ArrowRigh
 
 export default function HomePage() {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex min-h-screen">
       <AppSidebar />
-      <div className="flex-1 flex flex-col min-w-0 min-h-0">
+      <div className="flex-1 flex flex-col min-w-0">
         <AppHeader />
-        <main className="flex-1 bg-[#F4F4F5] overflow-hidden flex flex-col min-h-0">
+        <main className="flex-1 bg-[#F4F4F5] overflow-auto">
           {/* Hero */}
-          <div className="max-w-6xl mx-auto p-3 lg:p-4 flex flex-col gap-3 flex-1 min-h-0 overflow-hidden w-full">
+          <div className="max-w-6xl mx-auto p-3 lg:p-4 flex flex-col gap-3 w-full">
             <div className="bg-white rounded-2xl border border-zinc-200 overflow-hidden shrink-0">
               <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-0">
                 <div className="p-5 lg:p-6 flex flex-col gap-3">
@@ -112,6 +112,28 @@ export default function HomePage() {
                   <div className="text-sm text-zinc-500 leading-relaxed">{f.desc}</div>
                 </div>
               ))}
+            </div>
+
+            {/* Screenshots */}
+            <div className="bg-white rounded-xl border border-zinc-200 p-4">
+              <h2 className="font-semibold mb-3 text-sm">Screenshots</h2>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/screenshots/upload.png" alt="Upload" className="w-full h-auto" />
+                  <div className="p-2 text-xs font-medium text-center bg-white border-t">Upload</div>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/screenshots/processing.png" alt="Processing" className="w-full h-auto" />
+                  <div className="p-2 text-xs font-medium text-center bg-white border-t">Processing</div>
+                </div>
+                <div className="rounded-xl overflow-hidden border border-zinc-200 bg-zinc-50">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/screenshots/review.png" alt="Review" className="w-full h-auto" />
+                  <div className="p-2 text-xs font-medium text-center bg-white border-t">Review</div>
+                </div>
+              </div>
             </div>
 
             {/* How it works */}
