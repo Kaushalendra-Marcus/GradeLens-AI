@@ -2,8 +2,10 @@
 import { useState, useCallback } from "react";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
+import Link from "next/link";
 import { TeacherAvatarBadge } from "@/components/upload/TeacherAvatarBadge";
 import { UploadDropzone } from "@/components/upload/UploadDropzone";
+import { Github } from "lucide-react";
 import { ProcessingView } from "@/components/processing/ProcessingView";
 import { QuestionListPanel } from "@/components/review/QuestionListPanel";
 import { AnswerSheetPanel } from "@/components/review/AnswerSheetPanel";
@@ -259,6 +261,11 @@ export default function ExamPage() {
                 </Button>
               </div>
               <p className="text-center text-xs text-zinc-500 mt-3">Once both files are uploaded, you&apos;ll be able to map answers with questions.</p>
+              <div className="flex justify-center mt-4">
+                <Link href="https://github.com/Kaushalendra-Marcus/GradeLens-AI" target="_blank" className="inline-flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-700 border border-zinc-200 rounded-full px-3 py-1.5 bg-white">
+                  <Github className="w-3.5 h-3.5" /> View on GitHub
+                </Link>
+              </div>
             </div>
           </main>
         )}
