@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { AppHeader } from "@/components/layout/AppHeader";
-import { LayoutDashboard, FileText, BookOpen, Sparkles, ArrowRight, Clock, ShieldCheck, Zap, Users } from "lucide-react";
+import { LayoutDashboard, FileText, BookOpen, Sparkles, ArrowRight, Clock, ShieldCheck, Zap, Users, Github } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -31,6 +31,9 @@ export default function HomePage() {
                     </Link>
                     <Link href="/library" className="inline-flex items-center justify-center rounded-full border border-zinc-200 bg-white px-6 py-3 text-sm font-medium hover:bg-zinc-50">
                       Explore Library
+                    </Link>
+                    <Link href="https://github.com/Kaushalendra-Marcus/GradeLens-AI" target="_blank" className="inline-flex items-center gap-2 rounded-full border border-zinc-900 bg-white px-6 py-3 text-sm font-medium hover:bg-zinc-50">
+                      <Github className="w-4 h-4" /> GitHub
                     </Link>
                   </div>
                   <div className="flex items-center gap-6 mt-4 pt-4 border-t border-zinc-100">
@@ -172,7 +175,10 @@ export default function HomePage() {
               <div className="flex items-center gap-2 text-xs text-zinc-500">
                 <LayoutDashboard className="w-4 h-4" /> GradeLens AI • AI Teacher&apos;s Toolkit
               </div>
-              <div className="flex gap-4 text-xs text-zinc-500">
+              <div className="flex items-center gap-4 text-xs text-zinc-500">
+                <Link href="https://github.com/Kaushalendra-Marcus/GradeLens-AI" target="_blank" className="inline-flex items-center gap-1 hover:text-zinc-700">
+                  <Github className="w-3.5 h-3.5" /> GitHub
+                </Link>
                 <Link href="/assignments" className="hover:text-zinc-700">Assignments</Link>
                 <Link href="/library" className="hover:text-zinc-700">Library</Link>
                 <Link href="/settings" className="hover:text-zinc-700">Settings</Link>

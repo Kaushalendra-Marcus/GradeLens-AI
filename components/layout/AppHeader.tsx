@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HelpCircle, Bell, Sparkles, Menu, X, LayoutDashboard, GraduationCap, BookOpen, Library, FileText, Settings } from "lucide-react";
+import { HelpCircle, Bell, Sparkles, Menu, X, LayoutDashboard, GraduationCap, BookOpen, Library, FileText, Settings, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const mobileNav = [
@@ -31,6 +31,12 @@ export function AppHeader({ onBack }: { onBack?: () => void }) {
           <span>Exams / <span className="text-zinc-900 font-medium">AI Assessment Mapping</span></span>
         </div>
         <div className="ml-auto flex items-center gap-2">
+          <Link href="https://github.com/Kaushalendra-Marcus/GradeLens-AI" target="_blank" className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 bg-white text-xs font-medium hover:bg-zinc-50">
+            <Github className="w-4 h-4" /> GitHub
+          </Link>
+          <Link href="https://github.com/Kaushalendra-Marcus/GradeLens-AI" target="_blank" className="sm:hidden w-7 h-7 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50">
+            <Github className="w-4 h-4" />
+          </Link>
           <button className="w-7 h-7 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-zinc-50">
             <HelpCircle className="w-4 h-4" />
           </button>
